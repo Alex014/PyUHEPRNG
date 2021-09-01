@@ -17,4 +17,4 @@ Where *[directory]* is dir, where you want to store your files with random-gener
 3. numbers.json - array of 100 random floating-point numbers
 4. numbers-big.json - array of 1000 random floating-point numbers
 
-Every second the seed and the numbers is regenerated.
+Every second the seed and the numbers are regenerated.
