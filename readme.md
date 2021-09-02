@@ -5,11 +5,20 @@ This is Steve Gibson's [UHEPRNG](https://ness3.app/GRC's%c2%a0%7c%c2%a0UHE%20PRN
 
 ### Running
 ```
-python main.py [directory]
+python server.py [directory]
 ```
 Where *[directory]* is dir, where you want to store your files with random-generated data.
 *[directory]* is optional, if no params, then current directory is used.
 *Tmpfs* or other memory storage is recomended.
+```
+python prng.py -s 555
+```
+Output random seed 555 characters length
+
+```
+python prng.py -n 5
+```
+Output 5 random floating point numbers in JSON format
 
 #### Four files will be generated:
 1. seed.txt - seed of 256 random characters
