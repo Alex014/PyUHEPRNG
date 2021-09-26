@@ -1,5 +1,6 @@
 files
 files/*
+out/*
 venv
 venv/*
 seed.txt

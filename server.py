@@ -18,9 +18,7 @@ signal.signal(signal.SIGTERM, exit_fn)
 
 generator = prng.UhePrng()
 
-generator.add_entropy()
-seed = generator.string(256)
-# print(seed)
+
 
 directory = ''
 
@@ -33,8 +31,13 @@ if directory != '':
         exit(1)
     else:
         directory += os.path.sep
+else:
+    directory = 'out/'
 
 while True:
+    generator.add_entropy()
+    seed = generator.string(256)
+
     with open(directory + 'seed.txt', 'w+') as file:
         file.seek(0)
         file.write(seed)
