@@ -29,3 +29,11 @@ Output random seed 555 characters length
 python prng.py -n 5
 ```
 Output 5 random floating point numbers in JSON format
+
+### WEB interface
+In `public` directory:
+
+* print out seed.txt - index.php?s
+* print out seed-big.txt - index.php?sb
+* print out numbers.json - index.php?n
+* print out numbers-big.json - index.php?nb
