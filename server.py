@@ -32,7 +32,7 @@ if directory != '':
     else:
         directory += os.path.sep
 else:
-    directory = 'out/'
+    directory = '/tmp/'
 
 while True:
     generator.add_entropy()
