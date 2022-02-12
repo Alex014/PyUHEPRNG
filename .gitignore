@@ -7,6 +7,7 @@ seed.txt
 seed-big.txt
 numbers.json
 numbers-big.json
-lib/__pycache__/prng.cpython-39.pyc
+lib/__pycache__
+lib/__pycache__/*
 .idea
 .idea/*

@@ -83,7 +83,8 @@ class UhePrng:
 	def string(self, count: int):
 		s = ''
 		for i in range(0, count - 1):
-			s += chr(33 + self.random(94))
+			# ValueError: chr() arg not in range(0x110000)
+			s += chr( (33 + self.random(94)) % 0x110000 )
 
 		self.seed = s
 		return s
