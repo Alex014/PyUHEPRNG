@@ -181,19 +181,18 @@ class UhePrng:
 	def mash(self, data: int):
 		if data == 0:
 			self.n = 0xefc8249d
-			return
+		else:
+			data = str(data)
 
-		data = str(data)
+			for i in range(0, len(data) - 1):
+				self.n += ord(data[i])
 
-		for i in range(0, len(data) - 1):
-			self.n += ord(data[i])
-
-			h = 0.02519603282416938 * self.n
-			self.n = int(h)
-			h -= self.n
-			h *= self.n
-			self.n = int(h)
-			h -= self.n
-			self.n += h * 0x100000000  # 2 ^ 32
+				h = 0.02519603282416938 * self.n
+				self.n = int(h)
+				h -= self.n
+				h *= self.n
+				self.n = int(h)
+				h -= self.n
+				self.n += h * 0x100000000  # 2 ^ 32
 
 		return int(self.n) * 2.3283064365386963e-10;  # 2 ^ -32
