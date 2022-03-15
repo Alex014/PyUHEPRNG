@@ -43,6 +43,8 @@ import random
 import time
 import re
 import uuid
+from base64 import b64encode
+from base64 import b64decode
 
 
 class UhePrng:
@@ -156,7 +158,12 @@ class UhePrng:
 		for i in range(0, len(arguments) - 1):
 			args.append(arguments[i])
 
-		self.hash(str(time.time()) + ' ' + str(uuid.getnode()) + ' ' + ''.join(args) + str(random.random()))
+		rand = ''
+		with open('/dev/random', 'rb') as file:
+			rand = b64encode(file.read(1024)).decode('utf-8')
+			file.close()
+
+		self.hash(str(time.time()) + ' ' + rand + ' ' + str(uuid.getnode()) + ' ' + ''.join(args) + str(random.random()))
 
 	def generate(self, rng: int, count: int):
 		result = []

@@ -35,6 +35,8 @@ else:
     directory = '/tmp/'
 
 while True:
+    # print('.')
+
     generator.add_entropy()
     seed = generator.string(256)
 
@@ -42,6 +44,7 @@ while True:
         file.seek(0)
         file.write(seed)
         file.truncate()
+        file.close()
 
     numbers = generator.generate(0, 100)
     numbers = json.dumps(numbers)
@@ -51,6 +54,7 @@ while True:
         file.seek(0)
         file.write(numbers)
         file.truncate()
+        file.close()
 
     generator.add_entropy()
     seed = generator.string(1024)
@@ -60,6 +64,7 @@ while True:
         file.seek(0)
         file.write(seed)
         file.truncate()
+        file.close()
 
     numbers = generator.generate(0, 1000)
     numbers = json.dumps(numbers)
@@ -69,6 +74,7 @@ while True:
         file.seek(0)
         file.write(numbers)
         file.truncate()
+        file.close()
 
     # print('.')
 
