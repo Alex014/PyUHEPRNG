@@ -4,6 +4,9 @@ import sys
 import os
 import signal
 import time
+from base64 import b64encode
+from base64 import b64decode
+import uuid
 
 halt = False
 
@@ -32,12 +35,17 @@ if directory != '':
     else:
         directory += os.path.sep
 else:
-    directory = '/tmp/'
+    directory = os.path.sep + 'tmp' + os.path.sep
 
 while True:
     # print('.')
 
-    generator.add_entropy()
+    rand = ''
+    with open('/dev/random', 'rb') as file:
+        rand = b64encode(file.read(1024)).decode('utf-8')
+        file.close()
+
+    generator.add_entropy(rand, str(uuid.getnode()))
     seed = generator.string(256)
 
     with open(directory + 'seed.txt', 'w+') as file:
@@ -56,7 +64,12 @@ while True:
         file.truncate()
         file.close()
 
-    generator.add_entropy()
+    rand = ''
+    with open('/dev/random', 'rb') as file:
+        rand = b64encode(file.read(1024)).decode('utf-8')
+        file.close()
+
+    generator.add_entropy(rand, str(uuid.getnode()))
     seed = generator.string(1024)
     # print(seed)
 

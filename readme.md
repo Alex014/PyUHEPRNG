@@ -19,6 +19,16 @@ Where *[directory]* is dir, where you want to store your files with random-gener
 
 Every second the seed and the numbers are regenerated.
 
+### Running server with named pipe output
+```
+python pserver.py [pipeline file (default /tmp/random.pipeline)]
+```
+#### Redirecting output to /dev/random
+```
+python pserver.py /tmp/random.pipeline
+rngd -r /tmp/random.pipeline -i
+```
+Need *rng-tools* package
 ### Running utility
 ```
 python prng.py -s 555

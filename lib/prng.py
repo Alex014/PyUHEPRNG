@@ -28,7 +28,7 @@
 	to further verify the quality of this algorithm's pseudo-random numbers, a
 	256-megabyte file of this algorithm's output may be downloaded from GRC.com,
 	and a Microsoft Windows scripting host (WSH) version of this algorithm may be
-	downloaded and run from the Windows command prompt to generate unique files
+	downloaded and run from the Windows command uuid to generate unique files
 	of any size:
 	The Fermilab "ENT" tests: http://fourmilab.ch/random/
 	The 256-megabyte sample PRN file at GRC: https://www.GRC.com/otg/uheprng.bin
@@ -42,10 +42,6 @@ import math
 import random
 import time
 import re
-import uuid
-from base64 import b64encode
-from base64 import b64decode
-
 
 class UhePrng:
 
@@ -158,12 +154,7 @@ class UhePrng:
 		for i in range(0, len(arguments) - 1):
 			args.append(arguments[i])
 
-		rand = ''
-		with open('/dev/random', 'rb') as file:
-			rand = b64encode(file.read(1024)).decode('utf-8')
-			file.close()
-
-		self.hash(str(time.time()) + ' ' + rand + ' ' + str(uuid.getnode()) + ' ' + ''.join(args) + str(random.random()))
+		self.hash(str(time.time()) + ' ' + ''.join(args) + str(random.random()))
 
 	def generate(self, rng: int, count: int):
 		result = []
